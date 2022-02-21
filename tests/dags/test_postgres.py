@@ -5,6 +5,8 @@ from datetime import datetime, timedelta
 from airflow.operators.bash import BashOperator
 from airflow.operators.postgres_operator import PostgresOperator
 from airflow.hooks.base_hook import BaseHook
+
+
 # [END import_module]
 
 # [START Postgres Connector]
@@ -35,7 +37,7 @@ dag_params = {
 
 with DAG(**dag_params) as dag:
 
-    create_table = PostgresOperator(
+    create_fakerCadastro = PostgresOperator(
         task_id='create_fakerCadastro',
         sql='''CREATE TABLE fakerCadastro(
             custom_id integer NOT NULL, timestamp TIMESTAMP NOT NULL, user_id VARCHAR (50) NOT NULL
@@ -44,7 +46,7 @@ with DAG(**dag_params) as dag:
 # [END instantiate_dag]
 
 # [START basic_task]
-insert_row = PostgresOperator(
+insert_faker_row = PostgresOperator(
     task_id='insert_faker_row',
     sql='INSERT INTO create_fakerCadastro VALUES(%s, %s, %s)',
     # trigger_rule=TriggerRule.ALL_DONE,
