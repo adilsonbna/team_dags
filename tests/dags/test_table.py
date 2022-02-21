@@ -7,7 +7,7 @@ from airflow.operators.postgres_operator import PostgresOperator
 # [END import_module]
 
 # [START Postgres Connector]
-  conn = Connection(uri="postgresql://postgres:XAExoupGId@k8s.mycirrusit.com:32094/airflow")
+conn = Connection(uri="postgresql://postgres:XAExoupGId@k8s.mycirrusit.com:32094/airflow")
 # [END Postgres Connector]
 
 # [START default_args]
