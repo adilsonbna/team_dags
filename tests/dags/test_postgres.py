@@ -52,22 +52,21 @@ dag = DAG(
 # [END instantiate_dag]
 
 # [START basic_task]
-
 # create table on postgres [if not exists] = postgresql [postgres]
-create_fakerCadastro = PostgresOperator(
-    task_id='create_fakerCadastro',
+create_faker_cadastro = PostgresOperator(
+    task_id='create_faker_cadastro',
     postgres_conn_id='postgres_sql',
     sql='''CREATE TABLE fakerCadastro(
         custom_id integer NOT NULL, timestamp TIMESTAMP NOT NULL, user_id VARCHAR (50) NOT NULL
         );''',
-    dag=dag))
+    dag=dag)
 # [END instantiate_dag]
 
 # insert row in postgresql
 insert_faker_row = PostgresOperator(
     task_id='insert_faker_row',
     postgres_conn_id='postgres_sql',
-    sql='INSERT INTO create_fakerCadastro VALUES(%s, %s, %s)',
+    sql='INSERT INTO create_faker_cadastro VALUES(%s, %s, %s)',
     # trigger_rule=TriggerRule.ALL_DONE,
     trigger_rule='all_done'
     # parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
@@ -76,5 +75,5 @@ insert_faker_row = PostgresOperator(
 # [END basic_task]
 
 # [START task_sequence]
-create_fakerCadastro > insert_faker_row
+create_faker_cadastro > insert_faker_row
 # [END task_sequence]
