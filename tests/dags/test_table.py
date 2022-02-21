@@ -8,11 +8,7 @@ from airflow.operators.postgres_operator import PostgresOperator
 # [END import_module]
 
 # [START Postgres Connector]
-    try:
        airflow connections add 'postgresql' --conn-uri 'my-conn-type://postgres:XAExoupGId@k8s.mycirrusit.com:32094/airflow'
-        print("Conectado com Sucesso")
-    except Exception as com_erro:
-        print(com_erro)
 # [END Postgres Connector]
 
 # [START default_args]
