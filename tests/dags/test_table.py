@@ -15,9 +15,9 @@ default_args = {
     'owner': 'david fachini',
     'depends_on_past': False,
     'email': ['david.fachini@gmail.com'],
-    'email_on_failure': True,
+    'email_on_failure': False,
     'email_on_retry': False,
-    'retries': 3,
+    'retries': 1,
     'retry_delay': timedelta(minutes=5)}
 # [END default_args]
 
@@ -25,7 +25,7 @@ default_args = {
 # [START instantiate_dag]
 dag_params = {
     'dag_id': 'PostgresOperator_dag',
-    'start_date': datetime(2022, 02, 21),
+    'start_date': datetime(2022, 2, 21),
     'schedule_interval': None
 }
 
