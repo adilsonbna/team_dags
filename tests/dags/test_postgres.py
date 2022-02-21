@@ -49,7 +49,8 @@ with DAG(**dag_params) as dag:
 insert_row = PostgresOperator(
     task_id='insert_faker_row',
     sql='INSERT INTO create_fakerCadastro VALUES(%s, %s, %s)',
-    trigger_rule=TriggerRule.ALL_DONE,
+    # trigger_rule=TriggerRule.ALL_DONE,
+    trigger_rule='all_done'
     parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
 )
 # [END basic_task]
