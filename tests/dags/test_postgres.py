@@ -1,3 +1,34 @@
+
+
+
+https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/
+
+
+https://github.com/adilsonbna/team_dags.git
+
+git remote set-url origin https://[APPLICATION]:[NEW TOKEN]@github.com/[ORGANISATION]/[REPO].git
+
+
+# Token Github
+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
+
+# Clone repo
+git clone https://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@github.com/adilsonbna/team_dags.git
+
+# Para conseguir fazer o push 
+git remote remove origin
+git remote add origin https://[TOKEN]@github.com/[USER]/[REPO]
+git push
+
+
+
+
+
+
+
+
+
+
 # [START import_module]
 from airflow.models import DAG
 from airflow import DAG
@@ -51,7 +82,7 @@ insert_row = PostgresOperator(
     sql='INSERT INTO create_fakerCadastro VALUES(%s, %s, %s)',
     # trigger_rule=TriggerRule.ALL_DONE,
     trigger_rule='all_done'
-    parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
+    # parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
 )
 # [END basic_task]
 
