@@ -4,11 +4,10 @@ from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.bash import BashOperator
 from airflow.operators.postgres_operator import PostgresOperator
-
 # [END import_module]
 
 # [START Postgres Connector]
-       airflow connections add 'postgresql' --conn-uri 'my-conn-type://postgres:XAExoupGId@k8s.mycirrusit.com:32094/airflow'
+  conn = Connection(uri="postgresql://postgres:XAExoupGId@k8s.mycirrusit.com:32094/airflow")
 # [END Postgres Connector]
 
 # [START default_args]
