@@ -56,7 +56,7 @@ dag = DAG(
 create_faker_cadastro = PostgresOperator(
     task_id='create_faker_cadastro',
     postgres_conn_id='postgres',
-    sql='''CREATE TABLE fakerCadastro(
+    sql='''CREATE TABLE IF NOT EXISTS fakerCadastro(
         custom_id integer NOT NULL, timestamp TIMESTAMP NOT NULL, user_id VARCHAR (50) NOT NULL
         );''',
     dag=dag)
