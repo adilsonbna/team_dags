@@ -1,8 +1,8 @@
 # [START import_module]
 import pandas as pd
-from minio import Minio
-from os import getenv
-from io import BytesIO
+# from minio import Minio
+# from os import getenv
+# from io import BytesIO
 from sqlalchemy import create_engine
 from datetime import datetime, timedelta
 from airflow.models import DAG
