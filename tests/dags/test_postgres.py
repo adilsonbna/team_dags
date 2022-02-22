@@ -47,7 +47,7 @@ default_args = {
 dag = DAG(
     'cadastro_faker',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule_interval='*/1 * * * *',
     tags=['development', 'faker', 'postgres'])
 # [END instantiate_dag]
 
