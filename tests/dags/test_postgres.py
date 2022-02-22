@@ -18,10 +18,10 @@ from airflow.hooks.base_hook import BaseHook
 
 
 # [START env_variables]
-MINIO = getenv("MINIO", "node01.mycirrusit.com:31928")
-ACCESS_KEY = getenv("ACCESS_KEY", "YOURACCESSKEY")
-SECRET_ACCESS = getenv("SECRET_ACCESS", "YOURSECRETKEY")
-POSTGRESQL = getenv("POSTGRESQL", "postgresql://postgres:postgres@k8s.mycirrusit.com:32094/airflow")
+# MINIO = getenv("MINIO", "node01.mycirrusit.com:31928")
+# ACCESS_KEY = getenv("ACCESS_KEY", "YOURACCESSKEY")
+# SECRET_ACCESS = getenv("SECRET_ACCESS", "YOURSECRETKEY")
+# POSTGRESQL = getenv("POSTGRESQL", "postgresql://postgres:postgres@k8s.mycirrusit.com:32094/airflow")
 # [END env_variables]
 
 
