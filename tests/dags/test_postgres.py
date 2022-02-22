@@ -68,7 +68,7 @@ insert_faker_row = PostgresOperator(
     postgres_conn_id='postgres_sql',
     sql='''INSERT INTO fakerCadastro VALUES(%s, %s, %s);''',
     # trigger_rule=TriggerRule.ALL_DONE,
-    trigger_rule='all_done'
+    trigger_rule='all_done',
     # parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
     dag=dag)
 
