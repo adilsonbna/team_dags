@@ -66,7 +66,7 @@ create_faker_cadastro = PostgresOperator(
 insert_faker_row = PostgresOperator(
     task_id='insert_faker_row',
     postgres_conn_id='postgres',
-    sql='''INSERT INTO fakerCadastro VALUES(%s, %s, %s);''',
+    sql='''INSERT INTO fakerCadastro VALUES(1,20220221,'David');''',
     # trigger_rule=TriggerRule.ALL_DONE,
 #     trigger_rule='all_done',
     # parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
@@ -75,5 +75,5 @@ insert_faker_row = PostgresOperator(
 # [END basic_task]
 
 # [START task_sequence]
-create_faker_cadastro > insert_faker_row
+create_faker_cadastro >> insert_faker_row
 # [END task_sequence]
