@@ -6,25 +6,31 @@ import pandas as pd
 from faker import Faker
 from minio import Minio
 from airflow.hooks.base_hook import BaseHook
+from airflow.hooks.S3_hook import S3Hook
 
-conn = BaseHook.get_connection('minio')
+#conn = BaseHook.get_connection('minio')
 #print(conn)
 
 def gerar_dados_fake():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
-    conn = BaseHook.get_connection('minio')
+
+
+    # TESTE BaseHook
+    #conn = BaseHook.get_connection('minio')
     #print(conn)
     #print(conn.host)
     #print(conn.port)
     #print(conn.login)
     #print(conn.password)
-    MINIO = str(conn.host) + ":" + str(conn.port)
-    ACCESS_KEY = str(conn.login)
-    SECRET_ACCESS = str(conn.password)
+    #MINIO = str(conn.host) + ":" + str(conn.port)
+    #ACCESS_KEY = str(conn.login)
+    #SECRET_ACCESS = str(conn.password)
+    #client = Minio(MINIO, ACCESS_KEY, SECRET_ACCESS, secure=False)
 
-    client = Minio(MINIO, ACCESS_KEY, SECRET_ACCESS, secure=False)
+    # TESTE S3Hook
+    client = S3Hook('minio_test')
 
     buckets = client.list_buckets()
     print(buckets)
