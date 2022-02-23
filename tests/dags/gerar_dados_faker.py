@@ -4,7 +4,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 import pandas as pd
 from faker import Faker
-from minio import Minio
+#from minio import Minio
 from airflow.hooks.base_hook import BaseHook
 
 conn = BaseHook.get_connection('minio')
