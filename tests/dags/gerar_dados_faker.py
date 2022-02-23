@@ -16,10 +16,10 @@ def gerar_dados_fake():
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
     conn = BaseHook.get_connection('minio')
     print(conn)
-    print(conn.Host)
-    print(conn.Port)
-    print(conn.Login)
-    print(conn.Password)
+    print(conn.host)
+    print(conn.port)
+    #print(conn.Login)
+    #print(conn.Password)
     n = 100
     fake = Faker("pt_BR")
     nome, sobrenome, cpf, rg, data_nascimento, celular, email, endereco, cidade, estado_nome, estado_sigla, cep, profissao, salario, data_admissao, data_demissao, func_ativo = [[] for i in range(0,17)]
