@@ -32,7 +32,7 @@ default_args = {
     # 'trigger_rule': 'all_success'
 }
 with DAG(
-    'Dag for Testing Schedule',
+    'dag_testing_schedule_only',
     default_args=default_args,
     description='A simple tutorial DAG',
     schedule_interval=timedelta(minutes=1),
