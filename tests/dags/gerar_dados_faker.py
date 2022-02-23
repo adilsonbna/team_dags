@@ -10,6 +10,7 @@ def gerar_dados_fake(n):
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
+    fake = Faker("pt_BR")
     nome, sobrenome, cpf, rg, data_nascimento, celular, email, endereco, cidade, estado_nome, estado_sigla, cep, profissao, salario, data_admissao, data_demissao, func_ativo = [[] for i in range(0,17)]
     for row in range(0,n):
         nome.append(fake.first_name())
