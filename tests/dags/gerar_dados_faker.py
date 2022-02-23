@@ -6,10 +6,11 @@ import pandas as pd
 from faker import Faker
 
 
-def gerar_dados_fake(n):
+def gerar_dados_fake():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
+    n = 100
     fake = Faker("pt_BR")
     nome, sobrenome, cpf, rg, data_nascimento, celular, email, endereco, cidade, estado_nome, estado_sigla, cep, profissao, salario, data_admissao, data_demissao, func_ativo = [[] for i in range(0,17)]
     for row in range(0,n):
@@ -52,7 +53,7 @@ dag = DAG('gera_dados_fake', description='Gerar Dados Faker',
           schedule_interval=timedelta(minutes=60),
           start_date=datetime(2017, 3, 20), catchup=False)
 
-dados_faker = PythonOperator(task_id='gera_dados', python_callable=gerar_dados_fake(100), dag=dag)
+dados_faker = PythonOperator(task_id='gera_dados', python_callable=gerar_dados_fake, dag=dag)
 
 dados_faker
 
