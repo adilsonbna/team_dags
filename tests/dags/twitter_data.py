@@ -26,10 +26,22 @@ with DAG(
     start_date=datetime(2021, 1, 1),
     catchup=False,
     tags=['twitter', 'getdata', 'dev'],
-) as dag:
-    t1 = BashOperator(
+) 
+bash_file_transfer = """
+  scp root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp/  
+  """
+
+as dag:
+    ssh_connection = SSHOperator(
+        ssh_conn_id='ssh_node01'
+        task_id='connected_to_node01'
+        command=bash_file_transfer,
+        dag=dag
+        )
+
+    t2 = BashOperator(
         task_id='get_tweets',
-        bash_command='/usr/bin/python3.7 /cluster/helm/airflow/Python_twitter.py',
+        bash_command='/usr/bin/python3.7 /tmp/Python_twitter.py',
     )
 
-    t1
+    ssh_connection >> t2
