@@ -4,7 +4,11 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 import pandas as pd
 from faker import Faker
+from minio import Minio
+from airflow.hooks.base_hook import BaseHook
 
+conn = BaseHook.get_connection('minio')
+print(conn)
 
 def gerar_dados_fake():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
@@ -44,8 +48,19 @@ def gerar_dados_fake():
         "Profissao": profissao, "Salario": salario, "Data_Admissao": data_admissao, "Data_Demissao": data_demissao, "Contrato_Ativo": func_ativo}
 
     df = pd.DataFrame(d)
-    
-    return(df)
+    #client = Minio(MINIO, ACCESS_KEY, SECRET_ACCESS, secure=False)
+
+    #df.to_csv('')
+    #return(df)
+
+
+def fake_data_split(df):
+    df_dados_pessoais = df[['CPF', 'Nome', 'Sobrenome',  'RG', 'Data_Nascimento', 'Celular', 'Email',
+       'Endereco', 'Cidade', 'Estado_Nome', 'UF', 'CEP']]
+    df_rh_funcionarios = df[['CPF', 'Profissao','Salario', 'Data_Admissao', 'Data_Demissao', 'Contrato_Ativo' ]]
+    return(df_dados_pessoais, df_rh_funcionarios)
+
+
 
 
 
@@ -54,6 +69,8 @@ dag = DAG('gera_dados_fake', description='Gerar Dados Faker',
           start_date=datetime(2017, 3, 20), catchup=False)
 
 dados_faker = PythonOperator(task_id='gera_dados', python_callable=gerar_dados_fake, dag=dag)
+
+#dados_pessoais, dados_funcionario = 
 
 dados_faker
 
