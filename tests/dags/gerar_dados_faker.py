@@ -32,7 +32,7 @@ def gerar_dados_fake():
     # TESTE S3Hook
     client = S3Hook('minio_test')
 
-    buckets = client.list_buckets()
+    buckets = client.check_for_bucket('a3team')
     print(buckets)
 
 
