@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 import pandas as pd
-from faker import Faker
+from fake import Faker
 
 
 def gerar_dados_fake(n):
