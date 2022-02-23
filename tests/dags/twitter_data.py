@@ -23,16 +23,16 @@ with DAG(
     catchup=False,
     tags=['twitter', 'getdata', 'dev'],
 ) as dag:
-    ssh_connection = SSHOperator(
-        ssh_conn_id='ssh_node01',
-        task_id='connected_to_node01',
-        command='scp -rp root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
-        dag=dag
-        )
+    #ssh_connection = SSHOperator(
+    #   ssh_conn_id='ssh_node01',
+    #   task_id='connected_to_node01',
+    #    command='scp -rp root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
+    #    dag=dag
+    #    )
 
     t2 = BashOperator(
         task_id='get_tweets',
         bash_command='/usr/bin/python3.7 /tmp/Python_twitter.py',
     )
 
-    ssh_connection >> t2
+    t2
