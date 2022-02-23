@@ -25,10 +25,10 @@ with DAG(
     schedule_interval=timedelta(minutes=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
-    tags=['example'],
+    tags=['twitter', 'getdata'],
 ) as dag:
     t1 = BashOperator(
-        task_id='get tweets',
+        task_id='get_tweets',
         bash_command='/usr/bin/python3.6 /cluster/helm/airflow/Python_twitter.py',
     )
 
