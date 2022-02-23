@@ -56,8 +56,10 @@ dag = DAG(
 create_faker_cadastro = PostgresOperator(
     task_id='create_faker_cadastro',
     postgres_conn_id='postgres',
-    sql='''CREATE TABLE IF NOT EXISTS fakerCadastro(
-        custom_id integer NOT NULL, timestamp TIMESTAMP NOT NULL, user_id VARCHAR (50) NOT NULL
+    sql='''CREATE TABLE IF NOT EXISTS fakerCadastro 
+            ( custom_id SERIAL PRIMARY KEY NOT NULL, 
+              timestamp TIMESTAMP NOT NULL, 
+              user_id VARCHAR (50) NOT NULL
         );''',
     dag=dag)
 # [END instantiate_dag]
@@ -66,7 +68,7 @@ create_faker_cadastro = PostgresOperator(
 insert_faker_row = PostgresOperator(
     task_id='insert_faker_row',
     postgres_conn_id='postgres',
-    sql='''INSERT INTO fakerCadastro VALUES(1,now(),'David');''',
+    sql='''INSERT INTO fakerCadastro VALUES(now(),'Test adding new line');''',
     # trigger_rule=TriggerRule.ALL_DONE,
 #     trigger_rule='all_done',
     # parameters=(uuid.uuid4().int % 123456789, datetime.now(), uuid.uuid4().hex[:10])
