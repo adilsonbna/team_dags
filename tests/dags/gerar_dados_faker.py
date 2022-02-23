@@ -8,12 +8,13 @@ from faker import Faker
 from airflow.hooks.base_hook import BaseHook
 
 conn = BaseHook.get_connection('minio')
-print(conn)
+#print(conn)
 
 def gerar_dados_fake():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
+    print(conn)
     n = 100
     fake = Faker("pt_BR")
     nome, sobrenome, cpf, rg, data_nascimento, celular, email, endereco, cidade, estado_nome, estado_sigla, cep, profissao, salario, data_admissao, data_demissao, func_ativo = [[] for i in range(0,17)]
