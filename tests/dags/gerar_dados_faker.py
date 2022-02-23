@@ -14,6 +14,7 @@ def gerar_dados_fake():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
+    conn = BaseHook.get_connection('minio')
     print(conn)
     n = 100
     fake = Faker("pt_BR")
