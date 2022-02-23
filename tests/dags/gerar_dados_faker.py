@@ -4,7 +4,7 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 import pandas as pd
 from faker import Faker
-#from minio import Minio
+from minio import Minio
 from airflow.hooks.base_hook import BaseHook
 
 conn = BaseHook.get_connection('minio')
@@ -15,11 +15,21 @@ def gerar_dados_fake():
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
     conn = BaseHook.get_connection('minio')
-    print(conn)
-    print(conn.host)
-    print(conn.port)
-    print(conn.login)
-    print(conn.password)
+    #print(conn)
+    #print(conn.host)
+    #print(conn.port)
+    #print(conn.login)
+    #print(conn.password)
+    MINIO = str(conn.host) + ":" + str(conn.port)
+    ACCESS_KEY = str(conn.login)
+    SECRET_ACCESS = str(conn.password)
+
+    client = Minio(MINIO, ACCESS_KEY, SECRET_ACCESS, secure=False)
+
+    buckets = client.list_buckets()
+    print(buckets)
+
+
     n = 100
     fake = Faker("pt_BR")
     nome, sobrenome, cpf, rg, data_nascimento, celular, email, endereco, cidade, estado_nome, estado_sigla, cep, profissao, salario, data_admissao, data_demissao, func_ativo = [[] for i in range(0,17)]
