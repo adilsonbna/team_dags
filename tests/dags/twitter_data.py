@@ -31,7 +31,7 @@ with DAG(
     ssh_connection = SSHOperator(
         ssh_conn_id='ssh_node01',
         task_id='connected_to_node01',
-        command='scp -rp root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
+        command='scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
         dag=dag
         )
 
