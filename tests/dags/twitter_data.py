@@ -2,14 +2,9 @@
 from datetime import datetime, timedelta
 from textwrap import dedent
 from airflow.contrib.operators.ssh_operator import SSHOperator
-
-# The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG
-
-# Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
-# These args will get passed on to each operator
-# You can override them on a per-task basis during operator initialization
+
 default_args = {
     'owner': 'Adilson Cesar',
     'depends_on_past': False,
@@ -31,7 +26,7 @@ with DAG(
     ssh_connection = SSHOperator(
         ssh_conn_id='ssh_node01',
         task_id='connected_to_node01',
-        command='scp -rp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
+        command='scp -rp root@node01.mycirrusit.com:/cluster/helm/airflow/Python_twitter.py /tmp',
         dag=dag
         )
 
