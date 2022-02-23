@@ -1,6 +1,7 @@
 
 from datetime import datetime, timedelta
 from textwrap import dedent
+from airflow.contrib.operators.ssh_operator import SSHOperator
 
 # The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG
