@@ -49,5 +49,5 @@ dag = DAG('create_buckets', description='Cria cadastro_faker e rh_faker',
 
 createBuckets = PythonOperator(task_id='create_buckets', python_callable=cria_buckets, dag=dag)
 
-create_buckets
+createBuckets
 
