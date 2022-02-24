@@ -12,7 +12,7 @@ from airflow.hooks.S3_hook import S3Hook
 #conn = BaseHook.get_connection('minio')
 #print(conn)
 
-def gerar_dados_fake():
+def cria_buckets():
     # Criar listas vazias para armazenar os dados gerados para cada coluna do Dataframe
     # Obs: Ao executar dentro da função irá remover os dados já gerados.
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
