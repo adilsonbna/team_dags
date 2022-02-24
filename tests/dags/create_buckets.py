@@ -27,7 +27,7 @@ def gerar_dados_fake():
     bucket = "a3team"
 
 # Criar bucket Cadastro e RH
-def cria_buckets()
+def createBucket():
     cadastro_faker = cadastro_faker
     rh_faker = rh_faker
     bucketC = str(bucket)+"/"+cadastro_faker
@@ -43,11 +43,11 @@ def cria_buckets()
 
 
 
-dag = DAG('createBuckets', description='Cria cadastro_faker e rh_faker',
+dag = DAG('create_buckets', description='Cria cadastro_faker e rh_faker',
           schedule_interval=timedelta(minutes=60),
           start_date=datetime(2017, 3, 20), catchup=False)
 
-create_buckets = PythonOperator(task_id='createBuckets', python_callable=cria_buckets, dag=dag)
+createBuckets = PythonOperator(task_id='create_buckets', python_callable=cria_buckets, dag=dag)
 
 create_buckets
 
