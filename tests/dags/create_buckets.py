@@ -18,7 +18,7 @@ def gerar_dados_fake():
     # Caso seja necessário manter os dados (append), criar as listas fora da função e comentar esta linha.
 
 
-    TESTE BaseHook
+
     conn = BaseHook.get_connection('minio')
     MINIO = str(conn.host) + ":" + str(conn.port)
     ACCESS_KEY = str(conn.login)
@@ -48,8 +48,6 @@ dag = DAG('createBuckets', description='Cria cadastro_faker e rh_faker',
           start_date=datetime(2017, 3, 20), catchup=False)
 
 create_buckets = PythonOperator(task_id='createBuckets', python_callable=cria_buckets, dag=dag)
-
-
 
 create_buckets
 
